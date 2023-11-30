@@ -7,6 +7,14 @@ const imagenes = [
     'agua.png',
     'refresco.png',
 ];
+const fondoImagenes = [
+    'fondoVerduras.png',
+    'fondoPapas.png',
+    'fondoPescado.png',
+    'fondoCoco.png',
+    'fondoAgua.png',
+    'fondoRefresco.png',
+];
 
 selectorButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -20,18 +28,17 @@ selectorButtons.forEach((button) => {
 //FALTA CAMBIAR TODO
 const generarCuadricula = (cuadricula) => {
     //alert("Entré e hice la cuadricula");
-    let container = document.getElementById('container');
+    let container = document.getElementById('cartas-container');
     let copiasImg = imagenes.slice();
+    let copiasFondoImg = fondoImagenes.slice();
     let cartas = [];
     selecciones = [];
     numCartas = cuadricula;
-    if(numCartas == 20){
-        grid= document.getElementById("container");
-        grid.style.gridTemplateColumns = "repeat(5, minmax(150px, 1fr))";
+    if(numCartas == 12){
+        container.style.gridTemplateColumns = "repeat(3, 1fr)";
     }
     else{
-        grid= document.getElementById("container");
-        grid.style.gridTemplateColumns = "repeat(4, minmax(150px, 1fr))";
+        container.style.gridTemplateColumns = "repeat(2, 1fr)";
     }
     puntaje = 0;
     container.classList.remove('fadeIn');
@@ -40,11 +47,12 @@ const generarCuadricula = (cuadricula) => {
         cartas.push(`
             <div class="div-carta" onclick="seleccionarCarta(${numCarta})" >
                 <div id="carta_${numCarta}" class="carta">
-                    <div id="trasera_${numCarta}" class="cara trasera">
-                        <img src="assets/img/${copiasImg[0]}" alt="">
+                    <div id="trasera_${numCarta}" style="display: flex; align-items: center; justify-content: center;" class="cara trasera">
+                        <img src="./img/${copiasFondoImg[0]}" style="z-index: -10;" alt="">
+                        <img src="./img/${copiasImg[0]}" alt="">
                     </div>
                     <div class="cara frontal">
-                        <i class="fa-solid fa-question"></i>
+                        <img src="./img/atrasCarta.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -57,8 +65,6 @@ const generarCuadricula = (cuadricula) => {
     container.innerHTML = cartas.join("");
     container.classList.remove('fadeOut');
     container.classList.add('fadeIn');
-    renderTable();
-    comenzar();
 }
 
 function reiniciar() {
@@ -122,9 +128,3 @@ function reintentar() {
     boton.click();
     comenzar();
 }
-
-botonesCuadricula.forEach((boton) => {
-    boton.addEventListener('click', () => {
-        generarCuadricula(parseInt(boton.value));
-    });
-});
