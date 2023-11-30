@@ -8,12 +8,12 @@ const imagenes = [
     'refresco.png',
 ];
 const fondoImagenes = [
-    'fondoVerduras.png',
-    'fondoPapas.png',
-    'fondoPescado.png',
-    'fondoCoco.png',
-    'fondoAgua.png',
-    'fondoRefresco.png',
+    'fondoVerduras.svg',
+    'fondoPapas.svg',
+    'fondoPescado.svg',
+    'fondoCoco.svg',
+    'fondoAgua.svg',
+    'fondoRefresco.svg',
 ];
 
 selectorButtons.forEach((button) => {
