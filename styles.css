@@ -13,6 +13,22 @@
     background-repeat: no-repeat;
 }
 
+#mensajes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#mensajes-container img {
+    width: min(35rem, 90%);
+}
+
 .carta {
     position: relative;
     transform-style: preserve-3d;
@@ -140,4 +156,9 @@ body{
 
 .cara img{
     width: 70%;
+}
+
+.mensaje-oculto {
+    display: none;
+    opacity: 0;
 }

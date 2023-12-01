@@ -1,3 +1,6 @@
+
+const mensajesFondo = document.querySelector('#mensajes-container');
+
 let selecciones = [];
 let numCartas = 12;
 let puntaje = 0;
@@ -69,6 +72,12 @@ const deseleccionar = (selecciones) => {
         } else {
             traseraUno.style.opacity = "70%";
             traseraDos.style.opacity = "70%";
+
+            const srcImagen = traseraUno.querySelector('img').getAttribute('src');
+            const parts = srcImagen.split('/');
+            const fileName = parts[parts.length - 1].split('.')[0];
+
+            mostrarMensaje(fileName);
             puntaje++;
         }
         if(puntaje === (numCartas/2)){
@@ -76,6 +85,19 @@ const deseleccionar = (selecciones) => {
         }
 
     }, 800);
+}
+
+const mostrarMensaje = (imagen) => {
+
+    mensajesFondo.style.display = 'flex';
+
+    imagenes.forEach(img => {
+        if(`${imagen}.svg` == img) {
+            const mensajeFondo = mensajesFondo.querySelector(`#mensaje_${imagen}`);
+            mensajeFondo.classList.remove('mensaje-oculto');
+        }
+    });
+    
 }
 
 generarCuadricula();
