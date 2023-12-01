@@ -1,5 +1,6 @@
 
 const mensajesFondo = document.querySelector('#mensajes-container');
+const mensajeContainer = document.querySelector('#mensaje-container');
 
 let selecciones = [];
 let numCartas = 12;
@@ -93,8 +94,9 @@ const mostrarMensaje = (imagen) => {
 
     imagenes.forEach(img => {
         if(`${imagen}.svg` == img) {
-            const mensajeFondo = mensajesFondo.querySelector(`#mensaje_${imagen}`);
-            mensajeFondo.classList.remove('mensaje-oculto');
+            mensajeContainer.innerHTML = `<img id="mensaje_${imagen}" src="./img/mensaje_${imagen}.svg" alt="">`
+            // const mensajeFondo = mensajesFondo.querySelector(`#mensaje_${imagen}`);
+            // mensajeFondo.classList.remove('mensaje-oculto');
         }
     });
     

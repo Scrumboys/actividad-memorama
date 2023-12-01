@@ -25,10 +25,16 @@
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#mensajes-container img {
-    width: min(35rem, 90%);
+#mensaje-container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
 }
 
+#mensaje-container img {
+    width: min(35rem, 90%);
+}
 .carta {
     position: relative;
     transform-style: preserve-3d;
@@ -121,6 +127,7 @@ body{
     -ms-transition: opacity 0.5s ease;
     -o-transition: opacity 0.5s ease;
 }
+
 .cara {
     height: fit-content;
     position: absolute;
