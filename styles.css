@@ -7,10 +7,23 @@
     align-items: center;
     padding: 0;
     margin: 0;
-    background-image: url(./img/fondo.svg);
+    background-image: url(./img/bg_memorama.svg);
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+}
+
+#container-inicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url(./img/bg_memorama.svg);
+}
+
+#container-inicio img {
+    width: 75%;
 }
 
 #mensajes-container {
@@ -23,12 +36,13 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.6);
+    animation: fadeIn 1s ease-out forwards;
 }
 
 #mensaje-container{
     width: 100%;
-    height: fit-content;
     display: flex;
+    height: fit-content;
     justify-content: center;
 }
 
@@ -39,6 +53,10 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.5s ease;
+}
+
+#btn_cerrar {
+    cursor: pointer;
 }
 
 #fondo{
@@ -110,6 +128,7 @@ body{
 .hidden{
     display: none;
 }
+
 .fadeOut {
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -138,11 +157,11 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
 }
 
 .trasera {
@@ -168,4 +187,30 @@ body{
 .mensaje-oculto {
     display: none;
     opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+  
+.fadeInUp {
+    animation-name: fadeInUp;
+    animation-duration: 1s;
 }
