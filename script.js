@@ -91,6 +91,8 @@ const deseleccionar = (selecciones) => {
         }
 
     }, 600);
+    
+    mensajeContainer.classList.add('fadeInUp');
 }
 
 const mostrarMensaje = async (imagen) => {
