@@ -53,6 +53,7 @@ body {
 #mensaje-container img {
     width: min(35rem, 90%);
 }
+
 .carta {
     position: relative;
     transform-style: preserve-3d;
