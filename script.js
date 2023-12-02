@@ -91,7 +91,7 @@ const deseleccionar = (selecciones) => {
         }
 
     }, 600);
-    
+
     mensajeContainer.classList.add('fadeInUp');
 }
 
@@ -102,7 +102,7 @@ const mostrarMensaje = async (imagen) => {
     imagenes.forEach(img => {
         if (`${imagen}.svg` == img) {
             mensajeContainer.innerHTML += `
-                <img id="btn_cerrar" src="img/btn_cerrar.svg" alt="" style="position: absolute; right: 8rem; padding-top: 1.5rem; width: 2rem; z-index: 999;">
+                <img id="btn_cerrar" src="img/btn_cerrar.svg" alt="" style="position: absolute; right: 10rem; padding-top: 1.5rem; width: 2rem; z-index: 999;">
                 <img id="mensaje_${imagen}" src="./img/mensaje_${imagen}.svg" alt="">
             `;
             mensajeContainer.classList.add('fadeInUp');
