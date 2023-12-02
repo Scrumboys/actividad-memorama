@@ -133,24 +133,6 @@ body{
     display: none;
 }
 
-.fadeOut {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    -webkit-transition: opacity 0.5s ease;
-    -moz-transition: opacity 0.5s ease;
-    -ms-transition: opacity 0.5s ease;
-    -o-transition: opacity 0.5s ease;
-}
-
-.fadeIn {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    -webkit-transition: opacity 0.5s ease;
-    -moz-transition: opacity 0.5s ease;
-    -ms-transition: opacity 0.5s ease;
-    -o-transition: opacity 0.5s ease;
-}
-
 .cara {
     height: fit-content;
     position: absolute;
