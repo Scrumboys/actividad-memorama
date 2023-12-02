@@ -1,12 +1,19 @@
 
+const containerInicio = document.querySelector('#container-inicio');
 const mensajesFondo = document.querySelector('#mensajes-container');
+const cartasContainer = document.querySelector('#cartas-container');
 const mensajeContainer = document.querySelector('#mensaje-container');
+const mainContainer = document.querySelector('.main-container');
+
 const btnReinicio = document.querySelector('#btnReinicio');
 const btnCerrar = document.querySelector('#btn_cerrar');
 
+const btnSeisCartas = document.querySelector('#btnSeisCartas');
+const btnDoceCartas = document.querySelector('#btnDoceCartas');
+
 let selecciones = [];
 
-let numCartas = 12, puntaje = 0;
+let numCartas = 0, puntaje = 0;
 
 let slcUno = 0, slcDos = 0;
 
@@ -20,7 +27,19 @@ let imagenes = [
 ];
 
 const generarCuadricula = () => {
-    let cartasContainer = document.getElementById('cartas-container');
+    
+
+    if(numCartas == 6) {
+        cartasContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        cartasContainer.style.gridTemplateRows = 'repeat(3, 1fr)';
+    } else {
+        cartasContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
+        cartasContainer.style.gridTemplateRows = 'repeat(4, 1fr)';
+    }
+
+    containerInicio.style.display = 'none';
+    mainContainer.style.display = 'flex';
+
     let copiasImg = imagenes.slice();
     let cartas = [];
     selecciones = [];
@@ -129,4 +148,14 @@ btnReinicio.addEventListener('click', () => {
     generarCuadricula();
 });
 
-generarCuadricula();
+btnSeisCartas.addEventListener('click', () => {
+    numCartas = 6;
+    generarCuadricula();
+});
+
+btnDoceCartas.addEventListener('click', () => {
+    numCartas = 12;
+    generarCuadricula();
+});
+
+

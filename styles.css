@@ -19,15 +19,15 @@ body {
 }
 
 #container-inicio {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100vh;
 }
 
-#container-inicio img {
+#container-bg-inicio {
     width: 75%;
+    height: fit-content;
 }
 
 #mensajes-container {
