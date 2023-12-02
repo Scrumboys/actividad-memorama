@@ -90,7 +90,7 @@ const deseleccionar = (selecciones) => {
 
         }
 
-    }, 800);
+    }, 600);
 }
 
 const mostrarMensaje = async (imagen) => {
