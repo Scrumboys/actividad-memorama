@@ -70,57 +70,58 @@ const generarCuadricula = () => {
     cartasContainer.innerHTML = cartas.join("");
 }
 
-const seleccionarCarta = (numCarta) => {
+const seleccionarCarta = async (numCarta) => {
 
     let carta = document.getElementById(`carta_${numCarta}`);
     if (carta.style.transform != "rotateY(180deg)") {
         carta.style.transform = "rotateY(180deg)";
         selecciones.push(numCarta);
     }
+
     if (selecciones.length == 2) {
-        deseleccionar(selecciones[0], selecciones[1]);
+        await deseleccionar(selecciones[0], selecciones[1]);
         selecciones = [];
     }
+
+    
 }
 
 
 const deseleccionar = async (seleccionUno, seleccionDos) => {
-    await new Promise(resolve => {
-        setTimeout(() => {
-            let cartaUno = document.getElementById(`carta_${seleccionUno}`);
-            let cartaDos = document.getElementById(`carta_${seleccionDos}`);
-            let traseraUno = document.getElementById(`trasera_${seleccionUno}`);
-            let traseraDos = document.getElementById(`trasera_${seleccionDos}`);
+    setTimeout(() => {
+        let cartaUno = document.getElementById(`carta_${seleccionUno}`);
+        let cartaDos = document.getElementById(`carta_${seleccionDos}`);
+        let traseraUno = document.getElementById(`trasera_${seleccionUno}`);
+        let traseraDos = document.getElementById(`trasera_${seleccionDos}`);
 
-            slcUno = traseraUno;
-            slcDos = traseraDos;
+        slcUno = traseraUno;
+        slcDos = traseraDos;
 
-            if (traseraUno.innerHTML != traseraDos.innerHTML) {
-                cartaUno.style.transform = "rotateY(0deg)";
-                cartaDos.style.transform = "rotateY(0deg)";
-            } else {
+        if (traseraUno.innerHTML != traseraDos.innerHTML) {
+            cartaUno.style.transform = "rotateY(0deg)";
+            cartaDos.style.transform = "rotateY(0deg)";
+        } else {
+            puntaje++;
 
-                const srcImagen = traseraUno.querySelector('img').getAttribute('src');
-                const parts = srcImagen.split('/');
-                const fileName = parts[parts.length - 1].split('.')[0];
+            const srcImagen = traseraUno.querySelector('img').getAttribute('src');
+            const parts = srcImagen.split('/');
+            const fileName = parts[parts.length - 1].split('.')[0];
 
-                mostrarMensaje(fileName).then(() => {
-                    puntaje++;
-                    if (puntaje === (numCartas / 2)) {
-                        mostrarVentanaWin();
-                    }
-                    resolve();
-                });
-            }
+            mostrarMensaje(fileName);
+        }
 
-        }, 600);
-    });
+        if(puntaje === (numCartas / 2)) {
+            mostrarVentanaWin();
+        }
+
+    }, 600);
+
 }
 
 
-const mostrarMensaje = async (imagen) => {
+const mostrarMensaje = (imagen) => {
 
-    mensajesFondo.classList.add('fadeInUp')
+    mensajesFondo.classList.add('fadeInUp');
     mensajesFondo.style.display = 'flex';
 
     if (imagenes.includes(`${imagen}.svg`)) {
@@ -144,7 +145,7 @@ async function mostrarVentanaWin() {
     containerInicio.style.display = 'flex';
     containerWinner.classList.remove('mensaje-oculto');
 
-    containerBgInicio.classList.add('mensaje-oculto');
+    containerBgInicio.classList.add('mensaje-oculto', 'fadeIn');
 }
 
 function jugarDeNuevo() {
