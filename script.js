@@ -1,11 +1,15 @@
 
 const containerInicio = document.querySelector('#container-inicio');
+const containerBgInicio = document.querySelector('#container-bg-inicio');
+const containerWinner = document.querySelector('#container-bg-winner');
 const mensajesFondo = document.querySelector('#mensajes-container');
 const cartasContainer = document.querySelector('#cartas-container');
 const mensajeContainer = document.querySelector('#mensaje-container');
 const mainContainer = document.querySelector('.main-container');
 
 const btnCerrar = document.querySelector('#btn_cerrar');
+const btnJugarDeNuevo = document.querySelector('#botonjugardenuevo');
+const btnSalir = document.querySelector('#botonsalir');
 
 const btnSeisCartas = document.querySelector('#btnSeisCartas');
 const btnDoceCartas = document.querySelector('#btnDoceCartas');
@@ -67,65 +71,63 @@ const generarCuadricula = () => {
 }
 
 const seleccionarCarta = (numCarta) => {
-    
+
     let carta = document.getElementById(`carta_${numCarta}`);
-    if( carta.style.transform != "rotateY(180deg)" ) {
+    if (carta.style.transform != "rotateY(180deg)") {
         carta.style.transform = "rotateY(180deg)";
         selecciones.push(numCarta);
     }
-    if(selecciones.length == 2) {
-        deseleccionar(selecciones);
+    if (selecciones.length == 2) {
+        deseleccionar(selecciones[0], selecciones[1]);
         selecciones = [];
     }
 }
 
-const deseleccionar = (selecciones) => {
-    
-    setTimeout( async () => {
 
-        slcUno = '', slcDos = '';
-        let cartaUno = document.getElementById(`carta_${selecciones[0]}`);
-        let cartaDos = document.getElementById(`carta_${selecciones[1]}`);
-        let traseraUno = document.getElementById(`trasera_${selecciones[0]}`);
-        let traseraDos = document.getElementById(`trasera_${selecciones[1]}`);
+const deseleccionar = async (seleccionUno, seleccionDos) => {
+    await new Promise(resolve => {
+        setTimeout(() => {
+            let cartaUno = document.getElementById(`carta_${seleccionUno}`);
+            let cartaDos = document.getElementById(`carta_${seleccionDos}`);
+            let traseraUno = document.getElementById(`trasera_${seleccionUno}`);
+            let traseraDos = document.getElementById(`trasera_${seleccionDos}`);
 
-        slcUno = traseraUno;
-        slcDos = traseraDos;
+            slcUno = traseraUno;
+            slcDos = traseraDos;
 
-        if( traseraUno.innerHTML != traseraDos.innerHTML ) {
-            cartaUno.style.transform = "rotateY(0deg)";
-            cartaDos.style.transform = "rotateY(0deg)";
-        } else {
-            const srcImagen = traseraUno.querySelector('img').getAttribute('src');
-            const parts = srcImagen.split('/');
-            const fileName = parts[parts.length - 1].split('.')[0];
+            if (traseraUno.innerHTML != traseraDos.innerHTML) {
+                cartaUno.style.transform = "rotateY(0deg)";
+                cartaDos.style.transform = "rotateY(0deg)";
+            } else {
 
-            mostrarMensaje(fileName);
-            puntaje++;
-        }
+                const srcImagen = traseraUno.querySelector('img').getAttribute('src');
+                const parts = srcImagen.split('/');
+                const fileName = parts[parts.length - 1].split('.')[0];
 
-        if(puntaje === (numCartas/2)){
+                mostrarMensaje(fileName).then(() => {
+                    puntaje++;
+                    if (puntaje === (numCartas / 2)) {
+                        mostrarVentanaWin();
+                    }
+                    resolve();
+                });
+            }
 
-        }
-
-    }, 600);
-
-    // mensajeContainer.classList.remove('fadeInUp');
+        }, 600);
+    });
 }
+
 
 const mostrarMensaje = async (imagen) => {
 
     mensajesFondo.style.display = 'flex';
 
-    imagenes.forEach(img => {
-        if (`${imagen}.svg` == img) {
-            // mensajeContainer.classList.add('fadeInUp');
-            mensajeContainer.innerHTML += `
-                <img id="btn_cerrar" src="img/btn_cerrar.svg" alt="" style="position: absolute; right: 10rem; padding-top: 1.5rem; width: 2rem; z-index: 999;">
-                <img id="mensaje_${imagen}" src="./img/mensaje_${imagen}.svg" alt="">
-            `;
-        }
-    });
+    if (imagenes.includes(`${imagen}.svg`)) {
+        mensajeContainer.innerHTML += `
+            <img id="btn_cerrar" src="img/btn_cerrar.svg" alt="" style="position: absolute; right: 10rem; padding-top: 1.5rem; width: 2rem; z-index: 999;">
+            <img id="mensaje_${imagen}" src="./img/mensaje_${imagen}.svg" alt="">
+        `;
+    }
 
 }
 
@@ -134,6 +136,19 @@ const deshabilitarCartas = (slcUno, slcDos) => {
         slcUno.style.opacity = "70%";
         slcDos.style.opacity = "70%";
     }, 100);
+}
+
+async function mostrarVentanaWin() {
+    mainContainer.style.display = 'none';
+    containerInicio.style.display = 'flex';
+    containerWinner.classList.remove('mensaje-oculto');
+
+    containerBgInicio.classList.add('mensaje-oculto');
+}
+
+function jugarDeNuevo() {
+    containerBgInicio.classList.remove('mensaje-oculto');
+    containerWinner.classList.add('mensaje-oculto');
 }
 
 mensajeContainer.addEventListener('click', () => {
@@ -153,4 +168,6 @@ btnDoceCartas.addEventListener('click', () => {
     generarCuadricula();
 });
 
-
+btnJugarDeNuevo.addEventListener('click', () => {
+    jugarDeNuevo();
+});
