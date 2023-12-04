@@ -121,7 +121,8 @@ const deseleccionar = async (seleccionUno, seleccionDos) => {
 
 const mostrarMensaje = (imagen) => {
 
-    mensajesFondo.classList.add('fadeInUp');
+    mensajesFondo.classList.add('fadeIn');
+    mensajeContainer.classList.add('fadeInUp');
     mensajesFondo.style.display = 'flex';
 
     if (imagenes.includes(`${imagen}.svg`)) {
