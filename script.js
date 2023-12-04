@@ -125,7 +125,7 @@ const mostrarMensaje = async (imagen) => {
     if (imagenes.includes(`${imagen}.svg`)) {
         mensajeContainer.innerHTML += `
             <img id="btn_cerrar" class="fadeInUp" src="img/btn_cerrar.svg" alt="" style="position: absolute; right: 10rem; padding-top: 1.5rem; width: 2rem; z-index: 999;">
-            <img id="mensaje_${imagen}" src="./img/mensaje_${imagen}.svg" alt="">
+            <img id="mensaje_${imagen}" class="fadeInUp" src="./img/mensaje_${imagen}.svg" alt="">
         `;
     }
 
