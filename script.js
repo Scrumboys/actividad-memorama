@@ -5,7 +5,6 @@ const cartasContainer = document.querySelector('#cartas-container');
 const mensajeContainer = document.querySelector('#mensaje-container');
 const mainContainer = document.querySelector('.main-container');
 
-const btnReinicio = document.querySelector('#btnReinicio');
 const btnCerrar = document.querySelector('#btn_cerrar');
 
 const btnSeisCartas = document.querySelector('#btnSeisCartas');
@@ -111,7 +110,7 @@ const deseleccionar = (selecciones) => {
 
     }, 600);
 
-    mensajeContainer.classList.remove('fadeInUp');
+    // mensajeContainer.classList.remove('fadeInUp');
 }
 
 const mostrarMensaje = async (imagen) => {
@@ -120,11 +119,11 @@ const mostrarMensaje = async (imagen) => {
 
     imagenes.forEach(img => {
         if (`${imagen}.svg` == img) {
+            // mensajeContainer.classList.add('fadeInUp');
             mensajeContainer.innerHTML += `
                 <img id="btn_cerrar" src="img/btn_cerrar.svg" alt="" style="position: absolute; right: 10rem; padding-top: 1.5rem; width: 2rem; z-index: 999;">
                 <img id="mensaje_${imagen}" src="./img/mensaje_${imagen}.svg" alt="">
             `;
-            mensajeContainer.classList.add('fadeInUp');
         }
     });
 
@@ -142,10 +141,6 @@ mensajeContainer.addEventListener('click', () => {
     mensajeContainer.innerHTML = '';
 
     deshabilitarCartas(slcUno, slcDos);
-});
-
-btnReinicio.addEventListener('click', () => {
-    generarCuadricula();
 });
 
 btnSeisCartas.addEventListener('click', () => {
