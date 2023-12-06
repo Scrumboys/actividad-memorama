@@ -159,6 +159,10 @@ mensajeContainer.addEventListener('click', () => {
     mensajeContainer.innerHTML = '';
 
     deshabilitarCartas(slcUno, slcDos);
+
+    if(puntaje === (numCartas / 2)) {
+        
+    }
 });
 
 btnSeisCartas.addEventListener('click', () => {
