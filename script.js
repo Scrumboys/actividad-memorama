@@ -11,8 +11,9 @@ const btnCerrar = document.querySelector('#btn_cerrar');
 const btnJugarDeNuevo = document.querySelector('#botonjugardenuevo');
 const btnSalir = document.querySelector('#botonsalir');
 
-const btnSeisCartas = document.querySelector('#btnSeisCartas');
-const btnDoceCartas = document.querySelector('#btnDoceCartas');
+const btnSeisCartas = document.querySelector('#boton6');
+const btnDoceCartas = document.querySelector('#boton12');
+const botones = document.querySelectorAll('#botonx');
 
 let selecciones = [];
 
@@ -35,9 +36,11 @@ const generarCuadricula = () => {
     if(numCartas == 6) {
         cartasContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
         cartasContainer.style.gridTemplateRows = 'repeat(3, 1fr)';
+        cartasContainer.style.width = '90%';
     } else {
         cartasContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
         cartasContainer.style.gridTemplateRows = 'repeat(4, 1fr)';
+        cartasContainer.style.width = '100%';
     }
 
     containerInicio.style.display = 'none';
@@ -110,10 +113,6 @@ const deseleccionar = async (seleccionUno, seleccionDos) => {
             mostrarMensaje(fileName);
         }
 
-        if(puntaje === (numCartas / 2)) {
-            mostrarVentanaWin();
-        }
-
     }, 600);
 
 }
@@ -126,10 +125,7 @@ const mostrarMensaje = (imagen) => {
     mensajesFondo.style.display = 'flex';
 
     if (imagenes.includes(`${imagen}.svg`)) {
-        mensajeContainer.innerHTML += `
-            <img id="btn_cerrar" src="img/btn_cerrar.svg" alt="" style="position: absolute; right: 10rem; padding-top: 1.5rem; width: 2rem; z-index: 999;">
-            <img id="mensaje_${imagen}" src="./img/mensaje_${imagen}.svg" alt="">
-        `;
+        document.getElementById(`mensaje_${imagen}`).classList.remove('hidden');
     }
 
 }
@@ -138,6 +134,10 @@ const deshabilitarCartas = (slcUno, slcDos) => {
     setTimeout(() => {
         slcUno.style.opacity = "70%";
         slcDos.style.opacity = "70%";
+
+        if(puntaje === (numCartas / 2)) {
+            mostrarVentanaWin();
+        }
     }, 100);
 }
 
@@ -152,17 +152,22 @@ async function mostrarVentanaWin() {
 function jugarDeNuevo() {
     containerBgInicio.classList.remove('mensaje-oculto');
     containerWinner.classList.add('mensaje-oculto');
+
+    puntaje = 0;
 }
 
-mensajeContainer.addEventListener('click', () => {
-    mensajesFondo.style.display = 'none';
-    mensajeContainer.innerHTML = '';
+// Asignar addEventListener a las ventanas de mensaje para cada par
+botones.forEach((boton) => {
+    boton.addEventListener('click', () => {
+        mensajesFondo.style.display = 'none';
+    
+        for (let i = 0; i < mensajeContainer.children.length; i++) {
+            mensajeContainer.children[i].classList.add('hidden');
+        }
 
-    deshabilitarCartas(slcUno, slcDos);
+        deshabilitarCartas(slcUno, slcDos);
 
-    if(puntaje === (numCartas / 2)) {
-        
-    }
+    });
 });
 
 btnSeisCartas.addEventListener('click', () => {

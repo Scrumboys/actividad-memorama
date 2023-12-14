@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 7690 10250">
   <defs>
-    <clipPath id="clippath">
-      <rect width="7690" height="10250" style="fill: none;"/>
-    </clipPath>
-    <linearGradient id="Degradado_sin_nombre_2084" data-name="Degradado sin nombre 2084" x1="3845" y1="10250" x2="3845" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#6300bc"/>
-      <stop offset=".1" stop-color="#6d07c3"/>
-      <stop offset=".71" stop-color="#a733ee"/>
-      <stop offset="1" stop-color="#be45ff"/>
+    <linearGradient id="Degradado_sin_nombre_377" data-name="Degradado sin nombre 377" x1="-640" y1="640" x2="8330" y2="9610" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00a1ff"/>
+      <stop offset="1" stop-color="#00ff8f"/>
     </linearGradient>
   </defs>
-  <g id="fondo">
-    <g style="clip-path: url(#clippath); fill: none;">
-      <g id="LINEAS_FONDO" data-name="LINEAS FONDO">
-        <g id="CRUZES_FONDO" data-name="CRUZES FONDO">
-          <rect width="7690" height="10250" style="fill: url(#Degradado_sin_nombre_2084);"/>
-        </g>
-      </g>
-    </g>
+  <g id="bg_memorama">
+    <rect width="7690" height="10250" style="fill: url(#Degradado_sin_nombre_377);"/>
   </g>
 </svg>
